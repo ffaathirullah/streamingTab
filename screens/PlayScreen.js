@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   TextInput,
@@ -10,7 +10,7 @@ import {
 import { NodePlayerView } from "react-native-nodemediaclient";
 import ActionButton from "react-native-action-button";
 
-const PlayScreen = ({ navigation, vb }) => {
+const PlayScreen = ({ navigation, vb, rtmp }) => {
   useEffect(() => {
     return () => {
       vb.stop();
@@ -22,14 +22,12 @@ const PlayScreen = ({ navigation, vb }) => {
       <NodePlayerView
         style={{
           flex: 1,
-          backgroundColor: "#000",
+          backgroundColor: "#251818",
         }}
         ref={(vp) => {
           vb = vp;
         }}
-        inputUrl={
-          "rtmp://live.restream.io/pull/play_2827105_47e19a258a68eda90504"
-        }
+        inputUrl={"https://h1.intechmedia.net/intech/ch87.m3u8"}
         scaleMode={"ScaleAspectFit"}
         bufferTime={300}
         maxBufferTime={1000}

@@ -106,7 +106,7 @@ const MovieDetail = ({ navigation, route }) => {
                   ...FONTS.h1,
                 }}
               >
-                Pijar TV
+                Dzawani TV
               </Text>
             </LinearGradient>
           </View>

@@ -23,7 +23,6 @@ const windowHeight = Dimensions.get("window").height;
 
 const BottomIcon = ({ title, title2, type }) => {
   const navigation = useNavigation();
-  const [rtmp, setRtmp] = useState("0");
   const Icon = () => {
     if (title === "DRW TV") {
       return (
