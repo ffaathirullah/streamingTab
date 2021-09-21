@@ -36,9 +36,10 @@ const Tabs = () => {
           ),
         }}
       />
+
       <Tab.Screen
         name="CategoryScreen"
-        component={Religi}
+        component={CategoryScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabIcon focused={focused} icon={icons.play_button} />

@@ -27,8 +27,6 @@ import HeadFav from "./../HeadFav";
 const Religi = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-      <RenderHead />
-      <HeadFav title="Live Streaming List" />
       <ScrollView style={{ backgroundColor: "#fff", marginTop: 10 }}>
         <View style={styles.iconLayanan}>
           <BottomIcon title="DRW TV" type="layanan" border />
