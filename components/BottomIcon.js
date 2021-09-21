@@ -6,7 +6,7 @@ import {
   Dimensions,
 } from "react-native";
 import React, { useState } from "react";
-import { Border, PijarTV } from "../assets/icons/IconTV";
+import { PijarTV, DRW_TV } from "../assets/icons/IconTV";
 import { useNavigation } from "@react-navigation/native";
 import { COLORS } from "./../constants/theme";
 
@@ -22,12 +22,7 @@ const BottomIcon = ({ title, title2, type }) => {
       setNama("DRW TV");
       setUrlRttmp("https://h1.intechmedia.net/intech/ch87.m3u8");
       return (
-        <Border width={windowWidth * 0.24} height={windowHeight * 0.141} />
-      );
-    }
-    if (title === "DRW TV 2") {
-      return (
-        <Border width={windowWidth * 0.24} height={windowHeight * 0.141} />
+        <DRW_TV width={windowWidth * 0.24} height={windowHeight * 0.141} />
       );
     }
     if (title === "Pijar TV") {
@@ -38,22 +33,6 @@ const BottomIcon = ({ title, title2, type }) => {
       return (
         <PijarTV width={windowWidth * 0.24} height={windowHeight * 0.141} />
       );
-    }
-    if (title === "SCTV") {
-      return (
-        <Border width={windowWidth * 0.24} height={windowHeight * 0.141} />
-      );
-    }
-    if (title === "ANTV") {
-      return (
-        <Border width={windowWidth * 0.24} height={windowHeight * 0.141} />
-      );
-    }
-    if (title === "DRW PLay") {
-      return <Border />;
-    }
-    if (title === "Pengurusan") {
-      return <Border />;
     }
     return <Border />;
   };

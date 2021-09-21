@@ -32,18 +32,18 @@ const Religi = ({ navigation }) => {
       <ScrollView style={{ backgroundColor: "#fff", marginTop: 10 }}>
         <View style={styles.iconLayanan}>
           <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV 2" type="layanan" />
-          <BottomIcon title="Pijar TV" type="layanan" />
-          <BottomIcon title="SCTV" type="layanan" />
-          <BottomIcon title="ANTV" type="layanan" />
-          <BottomIcon title="DRW TV" type="layanan" />
-          <BottomIcon title="DRW TV" type="layanan" />
-          <BottomIcon title="DRW TV" type="layanan" />
-          <BottomIcon title="DRW TV" type="layanan" />
-          <BottomIcon title="DRW TV" type="layanan" />
-          <BottomIcon title="DRW TV" type="layanan" />
-          <BottomIcon title="DRW TV" type="layanan" />
-          <BottomIcon title="DRW TV" type="layanan" />
+          <BottomIcon title="Pijar TV" type="layanan" border />
+          <BottomIcon title="DRW TV" type="layanan" border />
+          <BottomIcon title="DRW TV" type="layanan" border />
+          <BottomIcon title="DRW TV" type="layanan" border />
+          <BottomIcon title="DRW TV" type="layanan" border />
+          <BottomIcon title="DRW TV" type="layanan" border />
+          <BottomIcon title="DRW TV" type="layanan" border />
+          <BottomIcon title="DRW TV" type="layanan" border />
+          <BottomIcon title="DRW TV" type="layanan" border />
+          <BottomIcon title="DRW TV" type="layanan" border />
+          <BottomIcon title="DRW TV" type="layanan" border />
+          <BottomIcon title="DRW TV" type="layanan" border />
         </View>
       </ScrollView>
       <View style={{ marginTop: windowHeight * 0.162 }}></View>

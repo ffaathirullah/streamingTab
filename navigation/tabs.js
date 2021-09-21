@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home } from "../screens";
 import { COLORS, icons } from "../constants";
 import { TabIcon } from "../components";
+import CategoryScreen from "./../screens/CategoryScreen";
 import Favorite from "./../screens/Favorite";
 import ProfileScreen from "./../screens/ProfileScreen";
 import Religi from "./../components/Jenis/Religi";
@@ -20,7 +21,7 @@ const Tabs = () => {
           left: 0,
           right: 0,
           elevation: 0,
-          backgroundColor: "#fff",
+          backgroundColor: COLORS.white,
           borderTopColor: "transparent",
           height: 100,
         },
@@ -36,7 +37,7 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="Live Screen"
+        name="CategoryScreen"
         component={Religi}
         options={{
           tabBarIcon: ({ focused }) => (

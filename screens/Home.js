@@ -34,7 +34,9 @@ const Home = ({ navigation }) => {
             Live Streaming
           </Text>
 
-          <TouchableOpacity onPress={() => navigation.navigate("Religi")}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("CategoryScreen")}
+          >
             <Image
               source={icons.right_arrow}
               style={{ width: 20, height: 20, tintColor: COLORS.primary }}
@@ -43,11 +45,12 @@ const Home = ({ navigation }) => {
         </View>
 
         {/* List */}
-
-        <BottomIcon title="DRW TV" />
-        <BottomIcon title="Pijar TV" />
-        <BottomIcon title="DRW TV" />
-        <BottomIcon title="DRW TV" />
+        <View style={{ margin: 20 }}>
+          <BottomIcon title="DRW TV" />
+          <BottomIcon title="Pijar TV" />
+          <BottomIcon title="DRW TV" />
+          <BottomIcon title="DRW TV" />
+        </View>
       </View>
     );
   }

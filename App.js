@@ -4,7 +4,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Tabs from "./navigation/tabs";
 import PlayScreen from "./screens/PlayScreen";
+import Play from "./screens/Play";
 import ProfileScreen from "./screens/ProfileScreen";
+import CategoryScreen from "./screens/CategoryScreen";
 import Login from "./screens/Auth/Login";
 import SignUp from "./screens/Auth/SignUp";
 import Religi from "./components/Jenis/Religi";
@@ -27,6 +29,8 @@ const App = () => {
         <Stack.Screen name="PlayScreen" component={PlayScreen} />
         <Stack.Screen name="Religi" component={Religi} />
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+        <Stack.Screen name="Play" component={Play} />
+        <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
