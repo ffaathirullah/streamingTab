@@ -7,7 +7,7 @@ const Submit = (props) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
-      style={[styles.container, { backgroundColor: "#FF002E" }]}
+      style={[styles.container, { backgroundColor: "#FAA21A" }]}
       onPress={() => navigation.navigate("Home")}
     >
       <Text style={styles.submitText}>{props.title}</Text>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   submitText: {
     fontSize: 22,
     fontWeight: "bold",
-    color: "white",
+    color: "#1F1F1F",
     alignSelf: "center",
     marginVertical: 10,
   },

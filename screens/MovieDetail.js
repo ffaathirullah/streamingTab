@@ -14,13 +14,14 @@ import { COLORS, SIZES, FONTS, icons } from "../constants";
 import LinearGradient from "react-native-linear-gradient";
 
 const MovieDetail = ({ navigation, route }) => {
+  useEffect(() => {
+    return () => {
+      vb.stop();
+    };
+  }, []);
+  const { name } = route.params;
+  const { urlLink } = route.params;
   const [selectedMovie, setSelectedMovie] = useState(null);
-
-  // useEffect(() => {
-  //   let { selectedMovie } = route.params;
-  //   setSelectedMovie(selectedMovie);
-  // }, []);
-
   function renderHeaderBar() {
     return (
       <ScrollView>
@@ -76,7 +77,7 @@ const MovieDetail = ({ navigation, route }) => {
   function renderHeaderSection() {
     return (
       <ImageBackground
-        source={require("../assets/images/series/barbarians/barbarians_cover.jpg")}
+        source={require("../assets/images/MovieDetail.png")}
         resizeMode="cover"
         style={{
           width: "100%",
@@ -106,7 +107,7 @@ const MovieDetail = ({ navigation, route }) => {
                   ...FONTS.h1,
                 }}
               >
-                Dzawani TV
+                {name}
               </Text>
             </LinearGradient>
           </View>
@@ -135,7 +136,11 @@ const MovieDetail = ({ navigation, route }) => {
             borderRadius: 15,
             backgroundColor: COLORS.primary,
           }}
-          onPress={() => navigation.navigate("PlayScreen")}
+          onPress={() =>
+            navigation.navigate("PlayScreen", {
+              urlLink2: urlLink,
+            })
+          }
         >
           <Text style={{ color: COLORS.white, ...FONTS.h2 }}>
             {selectedMovie?.details?.progress == "0%"

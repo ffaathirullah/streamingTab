@@ -6,15 +6,7 @@ import {
   Dimensions,
 } from "react-native";
 import React, { useState } from "react";
-import { Pijar } from "../assets/images/IconTV";
-import {
-  DRW_TV,
-  Pijar_TV,
-  SCTV,
-  ANTV,
-  DRW_PLay1,
-  DRW_Play2,
-} from "../assets/icons/IconTV";
+import { Border, PijarTV } from "../assets/icons/IconTV";
 import { useNavigation } from "@react-navigation/native";
 import { COLORS } from "./../constants/theme";
 
@@ -22,56 +14,72 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const BottomIcon = ({ title, title2, type }) => {
+  const [nama, setNama] = useState("");
+  const [urlRttmp, setUrlRttmp] = useState("");
   const navigation = useNavigation();
   const Icon = () => {
     if (title === "DRW TV") {
+      setNama("DRW TV");
+      setUrlRttmp("https://h1.intechmedia.net/intech/ch87.m3u8");
       return (
-        <DRW_PLay1 width={windowWidth * 0.2422} height={windowHeight * 0.132} />
+        <Border width={windowWidth * 0.24} height={windowHeight * 0.141} />
       );
     }
     if (title === "DRW TV 2") {
       return (
-        <DRW_Play2 width={windowWidth * 0.2422} height={windowHeight * 0.132} />
+        <Border width={windowWidth * 0.24} height={windowHeight * 0.141} />
       );
     }
     if (title === "Pijar TV") {
+      setNama("Pijar TV");
+      setUrlRttmp(
+        "rtmp://live.restream.io/pull/play_2827105_47e19a258a68eda90504"
+      );
       return (
-        <Pijar_TV width={windowWidth * 0.2422} height={windowHeight * 0.132} />
+        <PijarTV width={windowWidth * 0.24} height={windowHeight * 0.141} />
       );
     }
     if (title === "SCTV") {
       return (
-        <SCTV width={windowWidth * 0.2422} height={windowHeight * 0.132} />
+        <Border width={windowWidth * 0.24} height={windowHeight * 0.141} />
       );
     }
     if (title === "ANTV") {
       return (
-        <ANTV width={windowWidth * 0.2422} height={windowHeight * 0.132} />
+        <Border width={windowWidth * 0.24} height={windowHeight * 0.141} />
       );
     }
     if (title === "DRW PLay") {
-      return <DRW_PLay1 />;
+      return <Border />;
     }
     if (title === "Pengurusan") {
-      return <Pijar />;
+      return <Border />;
     }
-    return <Pijar />;
+    return <Border />;
   };
   return (
     <TouchableOpacity
-      style={styles.container(type)}
-      onPress={() => navigation.navigate("MovieDetail")}
+      style={styles.container}
+      onPress={() =>
+        navigation.navigate("MovieDetail", {
+          name: nama,
+          urlLink: urlRttmp,
+        })
+      }
     >
       <View style={styles.button(type)}>
         <Icon />
       </View>
-      <Text style={{ color: COLORS.white, textAlign: "center" }}>{title}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: (type) => ({}),
+  container: {
+    overflow: "hidden",
+    borderWidth: 1,
+    borderColor: "thistle",
+  },
   text: (type) => ({}),
   button: (type) => ({}),
 });

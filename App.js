@@ -5,7 +5,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import Tabs from "./navigation/tabs";
 import PlayScreen from "./screens/PlayScreen";
 import ProfileScreen from "./screens/ProfileScreen";
-import CategoryScreen from "./screens/CategoryScreen";
 import Login from "./screens/Auth/Login";
 import SignUp from "./screens/Auth/SignUp";
 import Religi from "./components/Jenis/Religi";

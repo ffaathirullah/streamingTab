@@ -22,25 +22,16 @@ import {
 import { Profiles, ProgressBar } from "../../components";
 import BottomIcon from "./../BottomIcon";
 import RenderHead from "./../RenderHead";
+import HeadFav from "./../HeadFav";
 
 const Religi = ({ navigation }) => {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.black }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <RenderHead />
-      <ScrollView style={{ backgroundColor: "#000" }}>
-        <Text
-          style={{
-            flex: 1,
-            marginTop: windowHeight * 0.0412,
-            marginLeft: windowWidth * 0.0412,
-            color: COLORS.white,
-            ...FONTS.h2,
-          }}
-        >
-          Live Streaming
-        </Text>
+      <HeadFav title="Live Streaming List" />
+      <ScrollView style={{ backgroundColor: "#fff", marginTop: 10 }}>
         <View style={styles.iconLayanan}>
-          <BottomIcon title="DRW TV" type="layanan" />
+          <BottomIcon title="DRW TV" type="layanan" border />
           <BottomIcon title="DRW TV 2" type="layanan" />
           <BottomIcon title="Pijar TV" type="layanan" />
           <BottomIcon title="SCTV" type="layanan" />
@@ -66,9 +57,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "flex-start",
-    marginTop: windowHeight * 0.0412,
-    marginBottom: windowHeight * 0.0412,
-    marginLeft: windowWidth * 0.0212,
+    marginLeft: windowWidth * 0.0112,
   },
 });
 

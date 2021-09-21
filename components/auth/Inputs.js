@@ -1,36 +1,41 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Input } from "react-native-elements";
 
-const Inputs = (props) => {
-  const [fokused, setFokused] = useState(false);
+class Inputs extends Component {
+  state = { isFocused: false };
 
   onFocusChange = () => {
-    fokused.setFokused(true);
+    this.setState({ isFocused: true });
   };
 
-  return (
-    <View
-      style={[styles.container, { borderColor: fokused ? "#FF002E" : "#eee" }]}
-    >
-      <Input
-        placeholder={props.name}
-        onFocus={onFocusChange}
-        inputContainerStyle={styles.inputContainer}
-        inputStyle={styles.inputText}
-        secureTextEntry={props.pass}
-        leftIcon={
-          <Icon
-            name={props.icon}
-            size={22}
-            color={fokused ? "#FF002E" : "grey"}
-          />
-        }
-      />
-    </View>
-  );
-};
+  render() {
+    return (
+      <View
+        style={[
+          styles.container,
+          { borderColor: this.state.isFocused ? "#1F1F1F	" : "#1F1F1F" },
+        ]}
+      >
+        <Input
+          placeholder={this.props.name}
+          onFocus={this.onFocusChange}
+          inputContainerStyle={styles.inputContainer}
+          inputStyle={styles.inputText}
+          secureTextEntry={this.props.pass}
+          leftIcon={
+            <Icon
+              name={this.props.icon}
+              size={22}
+              color={this.state.isFocused ? "#1F1F1F" : "#1F1F1F"}
+            />
+          }
+        />
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -39,12 +44,13 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     marginVertical: 10,
     borderWidth: 3.5,
+    color: "#1F1F1F",
   },
   inputContainer: {
     borderBottomWidth: 0,
   },
   inputText: {
-    color: "#FF002E",
+    color: "#1F1F1F",
     fontWeight: "bold",
     marginLeft: 5,
   },

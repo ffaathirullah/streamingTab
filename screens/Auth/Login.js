@@ -11,18 +11,15 @@ import Inputs from "../../components/auth/Inputs";
 import Submit from "../../components/auth/Submit";
 import Account from "../../components/auth/Account";
 import { useNavigation } from "@react-navigation/native";
-import { Login_Illsutration } from "../../assets/illustration";
+import { Login_DRW } from "../../assets/icons/IconTV";
 const Login = (props, onpress) => {
   const navigation = useNavigation();
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
   return (
-    <ScrollView style={{ backgroundColor: "#0F0E0E" }}>
+    <ScrollView style={{ backgroundColor: "#fff" }}>
       <View style={styles.container}>
-        <Login_Illsutration
-          width={windowWidth * 0.912}
-          height={windowHeight * 0.212}
-        />
+        <Login_DRW width={windowWidth * 0.912} height={windowHeight * 0.242} />
         <Text style={styles.textTitle}>Welcome back</Text>
         <Text style={styles.textBody}>Log in to your existant account</Text>
         <View style={{ marginTop: windowHeight * 0.0312 }} />
@@ -39,18 +36,18 @@ const Login = (props, onpress) => {
         </View>
         <Submit
           title="LOG IN"
-          color="#0148a4"
+          color="#fff"
           onpress={() => navigation.navigate("SignUp")}
         />
         <Text style={styles.textBody}>Or connect using</Text>
         <View style={{ flexDirection: "row" }}>
-          <Account color="#4096FE" icon="facebook" title="Facebook" />
-          <Account color="#FF002E" icon="google" title="Google" />
+          <Account color="#1D3CB9" icon="facebook" title="Facebook" />
+          <Account color="#C51E1E" icon="google" title="Google" />
         </View>
         <View style={{ flexDirection: "row", marginVertical: 5 }}>
           <Text style={styles.textBody}>Don't Have an account </Text>
           <Text
-            style={[styles.textBody, { color: "#4096FE" }]}
+            style={[styles.textBody, { color: "#1D3CB9" }]}
             onPress={() => props.navigation.navigate("SignUp")}
           >
             Sign Up
@@ -66,7 +63,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    color: "#fff",
+    color: "#1F1F1F",
     marginTop: 10,
   },
   image: {
@@ -78,12 +75,12 @@ const styles = StyleSheet.create({
     fontFamily: "Foundation",
     fontSize: 40,
     marginVertical: 10,
-    color: "#fff",
+    color: "#1F1F1F",
   },
   textBody: {
     fontFamily: "Foundation",
     fontSize: 16,
-    color: "#fff",
+    color: "#1F1F1F",
   },
 });
 

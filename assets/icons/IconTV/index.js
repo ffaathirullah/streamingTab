@@ -1,7 +1,4 @@
-import DRW_TV from "./DRW_TV";
-import Pijar_TV from "./Pijar_TV";
-import SCTV from "./SCTV";
-import ANTV from "./ANTV";
-import DRW_PLay1 from "./DRW_PLay1";
-import DRW_Play2 from "./DRW_Play2";
-export { DRW_TV, Pijar_TV, SCTV, ANTV, DRW_PLay1, DRW_Play2 };
+import Login_DRW from "./Login_DRW";
+import Border from "./Border";
+import PijarTV from "./PijarTV";
+export { Login_DRW, Border, PijarTV };

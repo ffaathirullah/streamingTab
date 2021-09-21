@@ -9,7 +9,7 @@ const RenderHead = () => {
         justifyContent: "center",
         alignItems: "center",
         paddingHorizontal: SIZES.padding,
-        backgroundColor: "#171515",
+        backgroundColor: "#fff",
       }}
     >
       {/* Profile */}
@@ -23,7 +23,7 @@ const RenderHead = () => {
         onPress={() => console.log("Profile")}
       >
         <Image
-          source={images.profile_photo}
+          source={require("../assets/icons/IconTV/icon_head.png")}
           style={{ width: 40, height: 40, borderRadius: 20 }}
         />
       </TouchableOpacity>
