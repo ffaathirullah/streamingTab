@@ -8,7 +8,7 @@ const Submit = (props) => {
   return (
     <TouchableOpacity
       style={[styles.container, { backgroundColor: "#FAA21A" }]}
-      onPress={() => navigation.navigate("Home")}
+      onPress={props.onPress}
     >
       <Text style={styles.submitText}>{props.title}</Text>
     </TouchableOpacity>
