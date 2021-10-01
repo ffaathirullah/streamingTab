@@ -17,22 +17,24 @@ import { useNavigation } from "@react-navigation/native";
 import { Login_DRW } from "../../assets/icons/IconTV";
 import axios from "axios";
 import { showMessage } from "react-native-flash-message";
+import useForm from "./../../utils/useForm/index";
 
 const Login = (props, onpress) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [form, setForm] = useForm({
+    email: "",
+    password: "",
+  });
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
   const navigation = useNavigation();
-  const onLogin = () => {
+  const onLogin = (data) => {
     const article = {
-      email: email,
-      password: password,
+      email: form.email,
+      password: form.password,
     };
     axios
-      .post("http://rtmv.herokuapp.com//api/login", article)
+      .post("http://rtmv-api.herokuapp.com/api/login", article)
       .then(function (response) {
-        showToast("Berhasil untuk login");
         navigation.replace("Home");
       })
       .catch(function (error) {
@@ -40,10 +42,10 @@ const Login = (props, onpress) => {
       });
   };
 
-  const showToast = (message, type) => {
+  const showToast = (message) => {
     showMessage({
       message: message,
-      type: type === "success" ? "success" : "danger",
+      type: "danger",
     });
   };
   return (
@@ -56,13 +58,15 @@ const Login = (props, onpress) => {
         <Inputs
           name="Email"
           icon="user"
-          onChangeText={(value) => setEmail(value)}
+          value={form.email}
+          onChangeText={(value) => setForm("email", value)}
         />
         <Inputs
           name="Password"
           icon="lock"
           pass={true}
-          onChangeText={(value) => setPassword(value)}
+          value={form.password}
+          onChangeText={(value) => setForm("password", value)}
         />
         <View style={{ width: "90%" }}>
           <Text

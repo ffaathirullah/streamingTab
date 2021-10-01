@@ -10,16 +10,53 @@ import {
 } from "react-native";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import Gap from "./../components/Gap";
-
+import axios from "axios";
+import { showMessage } from "react-native-flash-message";
 const { width, height } = Dimensions.get("window");
+import { useNavigation } from "@react-navigation/native";
 
-function ProfileScreen({ navigation }) {
+function ProfileScreen() {
+  useEffect(() => {
+    axios
+      .get("http://rtmv-api.herokuapp.com/api/post")
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        showToast("Gagal untuk login, Email atau Password salah");
+      });
+    //  https://rtmv-api.herokuapp.com/api/profile
+    return () => {};
+  }, []);
+  const navigation = useNavigation();
+  const showToast = (message) => {
+    showMessage({
+      message: message,
+      type: "danger",
+    });
+  };
+  const Logout = () => {
+    axios
+      .post("https://rtmv-api.herokuapp.com/api/logout")
+      .then(function (response) {
+        if (response.status === 200) {
+          setLoggedIn(false);
+          sessionStorage.setItem("loggedIn", false);
+        }
+        showToast("Berhasil untuk Logout");
+        navigation.reset({ index: 0, routes: [{ name: "Login" }] });
+      })
+      .catch(function (error) {
+        showToast("Gagal untuk logout");
+      });
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Text style={{ fontWeight: "bold", fontSize: 24 }}>Profile</Text>
         <View style={styles.settingContainer}>
-          <TouchableOpacity onPress={() => navigation.push("Login")}>
+          <TouchableOpacity onPress={() => Logout()}>
             <MaterialIcon size={24} name="logout" />
           </TouchableOpacity>
         </View>
