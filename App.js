@@ -10,10 +10,14 @@ import CategoryScreen from "./screens/CategoryScreen";
 import Login from "./screens/Auth/Login";
 import SignUp from "./screens/Auth/SignUp";
 import Religi from "./components/Jenis/Religi";
-
+import FlashMessage from "react-native-flash-message";
+import { Provider, useSelector } from "react-redux";
+import store from "./redux/store";
+import Loading from "./components/Loading/index";
 const Stack = createStackNavigator();
 
-const App = () => {
+const MainApp = () => {
+  const { isLoading } = useSelector((state) => state.globalReducer);
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -32,7 +36,17 @@ const App = () => {
         <Stack.Screen name="Play" component={Play} />
         <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
       </Stack.Navigator>
+      <FlashMessage position="top" />
+      {isLoading && <Loading />}
     </NavigationContainer>
+  );
+};
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <MainApp />
+    </Provider>
   );
 };
 

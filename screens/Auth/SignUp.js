@@ -15,11 +15,16 @@ import { Login_DRW } from "../../assets/icons/IconTV";
 import axios from "axios";
 import { showMessage } from "./../../utils/showMessage/index";
 import useForm from "./../../utils/useForm/index";
-
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setLoading } from "./../../redux/action/global";
+import { signUpAction } from "./../../redux/action/auth";
 const SignUp = (props) => {
+  const dispatch = useDispatch();
+  const globalState = useSelector((state) => state.globalReducer);
   const [phone, setPhone] = useState();
   const [form, setForm] = useForm({
-    nama: "",
+    name: "",
     email: "",
     password: "",
     phone: "",
@@ -28,21 +33,13 @@ const SignUp = (props) => {
   const windowHeight = Dimensions.get("window").height;
   const navigation = useNavigation();
   const onRegister = () => {
-    const article = {
-      name: form.nama,
-      email: form.email,
-      password: form.password,
-      phone: form.phone,
+    console.log("data form ", data);
+    dispatch(setLoading(true));
+    dispatch({ type: "SET_REGISTER", value: form });
+    const data = {
+      ...form,
     };
-    axios
-      .post("http://rtmv-api.herokuapp.com/api/register", article)
-      .then(function (response) {
-        showMessage("Berhasil untuk register");
-        navigation.navigate("Login");
-      })
-      .catch(function (error) {
-        showMessage("Gagal untuk signup email telah digunakan");
-      });
+    dispatch(signUpAction(data, navigation));
   };
   return (
     <ScrollView style={{ backgroundColor: "#fff" }}>
@@ -55,8 +52,8 @@ const SignUp = (props) => {
         <Input
           name="Full Name"
           icon="user"
-          value={form.nama}
-          onChangeText={(value) => setForm("nama", value)}
+          value={form.name}
+          onChangeText={(value) => setForm("name", value)}
         />
         <Input
           name="Email"

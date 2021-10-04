@@ -16,10 +16,14 @@ import Account from "../../components/auth/Account";
 import { useNavigation } from "@react-navigation/native";
 import { Login_DRW } from "../../assets/icons/IconTV";
 import axios from "axios";
-import { showMessage } from "react-native-flash-message";
 import useForm from "./../../utils/useForm/index";
+import { showMessage } from "./../../utils/showMessage/index";
+import { setLoading } from "./../../redux/action/global";
+import { useDispatch } from "react-redux";
+import { loginAction } from "./../../redux/action/auth";
 
 const Login = (props, onpress) => {
+  const dispatch = useDispatch();
   const [form, setForm] = useForm({
     email: "",
     password: "",
@@ -27,27 +31,15 @@ const Login = (props, onpress) => {
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
   const navigation = useNavigation();
-  const onLogin = (data) => {
-    const article = {
+  const onLogin = () => {
+    dispatch(setLoading(true));
+    const data = {
       email: form.email,
       password: form.password,
     };
-    axios
-      .post("http://rtmv-api.herokuapp.com/api/login", article)
-      .then(function (response) {
-        navigation.replace("Home");
-      })
-      .catch(function (error) {
-        showToast("Gagal untuk login, Email atau Password salah");
-      });
+    dispatch(loginAction(data, navigation));
   };
 
-  const showToast = (message) => {
-    showMessage({
-      message: message,
-      type: "danger",
-    });
-  };
   return (
     <ScrollView style={{ backgroundColor: "#fff" }}>
       <View style={styles.container}>
