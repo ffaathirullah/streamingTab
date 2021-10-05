@@ -14,21 +14,22 @@ import axios from "axios";
 import { showMessage } from "react-native-flash-message";
 const { width, height } = Dimensions.get("window");
 import { useNavigation } from "@react-navigation/native";
+import { getData } from "./../utils/storage/index";
+import useForm from "./../utils/useForm/index";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function ProfileScreen() {
-  useEffect(() => {
-    axios
-      .get("http://rtmv-api.herokuapp.com/api/post")
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        showToast("Gagal untuk login, Email atau Password salah");
-      });
-    //  https://rtmv-api.herokuapp.com/api/profile
-    return () => {};
-  }, []);
+  const [phone, setPhone] = useState("");
+  const [namanya, setNamanya] = useState("");
+  const [emailnya, setEmailnya] = useState("");
   const navigation = useNavigation();
+  useEffect(() => {
+    getData("userProfile").then((res) => {
+      setPhone(res.phone);
+      setNamanya(res.name);
+      setEmailnya(res.email);
+    });
+  }, []);
   const showToast = (message) => {
     showMessage({
       message: message,
@@ -36,19 +37,9 @@ function ProfileScreen() {
     });
   };
   const Logout = () => {
-    axios
-      .post("https://rtmv-api.herokuapp.com/api/logout")
-      .then(function (response) {
-        if (response.status === 200) {
-          setLoggedIn(false);
-          sessionStorage.setItem("loggedIn", false);
-        }
-        showToast("Berhasil untuk Logout");
-        navigation.reset({ index: 0, routes: [{ name: "Login" }] });
-      })
-      .catch(function (error) {
-        showToast("Gagal untuk logout");
-      });
+    AsyncStorage.multiRemove(["userProfile", "token"]).then(() => {
+      navigation.reset({ index: 0, routes: [{ name: "Login" }] });
+    });
   };
 
   return (
@@ -80,11 +71,11 @@ function ProfileScreen() {
         <Gap height={7} />
         <Text style={{ color: "#767676", fontSize: 14 }}>User</Text>
         <Gap height={7} />
-        <Text style={{ fontWeight: "bold", fontSize: 16 }}>Fachrul</Text>
+        <Text style={{ fontWeight: "bold", fontSize: 16 }}>{namanya}</Text>
         <Gap height={7} />
-        <Text style={{ fontSize: 14 }}>ffaaathirullah@mail.com </Text>
+        <Text style={{ fontSize: 14 }}>{emailnya}</Text>
         <Gap height={9} />
-        <Text style={{ fontSize: 14 }}>082118647226 </Text>
+        <Text style={{ fontSize: 14 }}>{phone} </Text>
         <Gap height={9} />
       </View>
       <Gap height={30} />

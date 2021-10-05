@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -21,8 +21,19 @@ import { showMessage } from "./../../utils/showMessage/index";
 import { setLoading } from "./../../redux/action/global";
 import { useDispatch } from "react-redux";
 import { loginAction } from "./../../redux/action/auth";
+import { getData } from "./../../utils/storage/index";
 
 const Login = (props, onpress) => {
+  useEffect(() => {
+    setTimeout(() => {
+      getData("token").then((res) => {
+        if (res) {
+          navigation.reset({ index: 0, routes: [{ name: "Home" }] });
+        } else {
+        }
+      });
+    }, 2000);
+  }, []);
   const dispatch = useDispatch();
   const [form, setForm] = useForm({
     email: "",

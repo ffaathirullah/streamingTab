@@ -91,7 +91,6 @@ const Carousel = ({ data, flatListA }) => {
     );
   }
 
-  console.log("Please provide Images");
   return null;
 };
 

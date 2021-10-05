@@ -3,11 +3,6 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import { COLORS, FONTS, SIZES } from "../constants";
 
 const Profiles = ({ profiles }) => {
-  useEffect(() => {
-    getData("userProfile").then((res) => {
-      console.log("response user :", res);
-    });
-  }, []);
   if (profiles.length <= 3) {
     return (
       <View style={styles.container}>

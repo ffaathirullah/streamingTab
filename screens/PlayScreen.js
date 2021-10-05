@@ -9,7 +9,7 @@ class PlayScreen extends React.Component {
   };
   render() {
     const { urlLink2 } = this.props.route.params;
-    console.log(urlLink2);
+
     return (
       <View style={{ flex: 1 }}>
         <StatusBar barStyle="light-content" backgroundColor="#6a51ae" />

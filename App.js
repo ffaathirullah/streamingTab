@@ -14,6 +14,7 @@ import FlashMessage from "react-native-flash-message";
 import { Provider, useSelector } from "react-redux";
 import store from "./redux/store";
 import Loading from "./components/Loading/index";
+import SplashScreen from "./screens/SplashScreen";
 const Stack = createStackNavigator();
 
 const MainApp = () => {
@@ -24,8 +25,9 @@ const MainApp = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={"Login"}
+        initialRouteName={"SplashScreen"}
       >
+        <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Home" component={Tabs} />

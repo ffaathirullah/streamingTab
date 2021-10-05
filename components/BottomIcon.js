@@ -13,36 +13,36 @@ import { COLORS } from "./../constants/theme";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const BottomIcon = ({ title, title2, type }) => {
-  const [nama, setNama] = useState("");
-  const [urlRttmp, setUrlRttmp] = useState("");
+const BottomIcon = ({ type, element }) => {
+  const [namaChannel, setNamaChannel] = useState("");
+  const [linkRtmp, setLinkRtmp] = useState("");
   const navigation = useNavigation();
   const Icon = () => {
-    if (title === "DRW TV") {
-      setNama("DRW TV");
-      setUrlRttmp("https://h1.intechmedia.net/intech/ch87.m3u8");
+    if (element.id === 4) {
+      setNamaChannel(element.name);
+      setLinkRtmp(element.link);
+      // https://h1.intechmedia.net/intech/ch87.m3u8
       return (
         <DRW_TV width={windowWidth * 0.24} height={windowHeight * 0.141} />
       );
     }
-    if (title === "Pijar TV") {
-      setNama("Pijar TV");
-      setUrlRttmp(
-        "rtmp://live.restream.io/pull/play_2827105_47e19a258a68eda90504"
-      );
+    if (element.id === 5) {
+      setNamaChannel(element.name);
+      setLinkRtmp(element.link);
+      // rtmp://live.restream.io/pull/play_2827105_47e19a258a68eda90504
       return (
         <PijarTV width={windowWidth * 0.24} height={windowHeight * 0.141} />
       );
     }
-    return <Border />;
+    return null;
   };
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={() =>
         navigation.navigate("MovieDetail", {
-          name: nama,
-          urlLink: urlRttmp,
+          name: namaChannel,
+          urlLink: linkRtmp,
         })
       }
     >

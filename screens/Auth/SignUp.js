@@ -33,7 +33,6 @@ const SignUp = (props) => {
   const windowHeight = Dimensions.get("window").height;
   const navigation = useNavigation();
   const onRegister = () => {
-    console.log("data form ", data);
     dispatch(setLoading(true));
     dispatch({ type: "SET_REGISTER", value: form });
     const data = {
