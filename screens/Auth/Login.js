@@ -24,16 +24,6 @@ import { loginAction } from "./../../redux/action/auth";
 import { getData } from "./../../utils/storage/index";
 
 const Login = (props, onpress) => {
-  useEffect(() => {
-    setTimeout(() => {
-      getData("token").then((res) => {
-        if (res) {
-          navigation.reset({ index: 0, routes: [{ name: "Home" }] });
-        } else {
-        }
-      });
-    }, 2000);
-  }, []);
   const dispatch = useDispatch();
   const [form, setForm] = useForm({
     email: "",

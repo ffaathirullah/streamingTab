@@ -2,7 +2,7 @@ import axios from "axios";
 import { setLoading } from "./global";
 import { API_HOST } from "./../../utils/API_HOST/index";
 import { useNavigation } from "@react-navigation/native";
-import { getData } from "./../../utils/storage/index";
+import { storeData } from "./../../utils/storage/index";
 import { showMessage } from "./../../utils/showMessage/index";
 
 export const loginAction = (dataLogin, navigation) => (dispatch) => {
@@ -41,21 +41,4 @@ export const signUpAction = (dataSignUp, navigation) => (dispatch) => {
       showMessage("Email Telah digunakan / Form tidak boleh kosong");
       dispatch(setLoading(false));
     });
-};
-
-export const getFavoriteAction = (navigation) => (dispatch) => {
-  getData("token").then((res) => {
-    if (res) {
-      axios
-        .get("http://rtmv-api.herokuapp.com/api/chanel")
-        .then(function (response) {
-          console.log("response channel", response);
-        })
-        .catch(function (error) {
-          console.log("error channel");
-        });
-    } else {
-      console.log("error");
-    }
-  });
 };

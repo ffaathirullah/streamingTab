@@ -68,7 +68,7 @@ const Carousel = ({ data, flatListA }) => {
         <View style={styles.dotView}>
           {data.map((_, i) => {
             let opacity = position.interpolate({
-              inputRange: [i - 1, i, i + 1],
+              inputRange: [i, i, i + 1],
               outputRange: [0.3, 1, 0.3],
               extrapolate: "clamp",
             });

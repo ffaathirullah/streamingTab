@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -23,25 +23,24 @@ import { Profiles, ProgressBar } from "../../components";
 import BottomIcon from "./../BottomIcon";
 import RenderHead from "./../RenderHead";
 import HeadFav from "./../HeadFav";
+import { useDispatch } from "react-redux";
+import { getChannel } from "./../../redux/action/channel";
 
 const Religi = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const [channel, setChannel] = useState([]);
+  useEffect(() => {
+    dispatch(getChannel(setChannel));
+  }, []);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <ScrollView style={{ backgroundColor: "#fff", marginTop: 10 }}>
         <View style={styles.iconLayanan}>
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="Pijar TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
+          {channel.map((element) => {
+            if (element.id === 4 || element.id === 5) {
+              return <BottomIcon title={element.name} element={element} />;
+            }
+          })}
         </View>
       </ScrollView>
       <View style={{ marginTop: windowHeight * 0.162 }}></View>

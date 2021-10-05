@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -16,20 +16,27 @@ import { Profiles, ProgressBar } from "../components";
 import BottomIcon from "./../components/BottomIcon";
 import RenderHead from "./../components/RenderHead";
 import HeadFav from "./../components/HeadFav";
+import { useDispatch } from "react-redux";
+import { getChannel } from "./../redux/action/channel";
 
 const Favorite = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const [channel, setChannel] = useState([]);
+
+  useEffect(() => {
+    dispatch(getChannel(setChannel));
+  }, []);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <RenderHead />
       <HeadFav title="Live Streaming List" />
       <ScrollView style={{ backgroundColor: "#fff", marginTop: 10 }}>
         <View style={styles.iconLayanan}>
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="Pijar TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
-          <BottomIcon title="DRW TV" type="layanan" border />
+          {channel.map((element) => {
+            if (element.id === 4 || element.id === 5) {
+              return <BottomIcon title={element.name} element={element} />;
+            }
+          })}
         </View>
       </ScrollView>
       <View style={{ marginTop: windowHeight * 0.162 }}></View>
