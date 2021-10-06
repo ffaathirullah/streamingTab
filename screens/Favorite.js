@@ -17,25 +17,50 @@ import BottomIcon from "./../components/BottomIcon";
 import RenderHead from "./../components/RenderHead";
 import HeadFav from "./../components/HeadFav";
 import { useDispatch } from "react-redux";
-import { getChannel } from "./../redux/action/channel";
+import { getFavorite } from "./../redux/action/favorite";
+import { getData } from "./../utils/storage/index";
+import axios from "axios";
+import { API_HOST } from "./../utils/API_HOST/index";
+import { setLoading } from "./../redux/action/global";
+import { useSelector } from "react-redux";
 
 const Favorite = ({ navigation }) => {
   const dispatch = useDispatch();
-  const [channel, setChannel] = useState([]);
-
+  const favoriteState = useSelector((state) => state.favoriteReducer);
   useEffect(() => {
-    dispatch(getChannel(setChannel));
+    dispatch(setLoading(true));
+    getData("token").then((res) => {
+      if (res) {
+        axios
+          .get("http://rtmv-api.herokuapp.com/api/pavorit", {
+            headers: { Authorization: `${res.value}` },
+          })
+          .then(function (response) {
+            dispatch(setLoading(false));
+            dispatch({ type: "SET_FAVORITE", value: response.data });
+          })
+          .catch(function (error) {
+            dispatch(setLoading(false));
+          });
+      } else {
+      }
+    });
   }, []);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <RenderHead />
       <HeadFav title="Live Streaming List" />
       <ScrollView style={{ backgroundColor: "#fff", marginTop: 10 }}>
         <View style={styles.iconLayanan}>
-          {channel.map((element) => {
-            if (element.id === 4 || element.id === 5) {
-              return <BottomIcon title={element.name} element={element} />;
-            }
+          {favoriteState.channelFavorite.map((element) => {
+            return (
+              <BottomIcon
+                key={element.id}
+                title={element.chanel.name}
+                element={element}
+              />
+            );
           })}
         </View>
       </ScrollView>

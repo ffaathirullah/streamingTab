@@ -12,16 +12,24 @@ import {
 import { ProgressBar } from "../components";
 import { COLORS, SIZES, FONTS, icons } from "../constants";
 import LinearGradient from "react-native-linear-gradient";
+import { useDispatch } from "react-redux";
+import { postFavorite } from "./../redux/action/favorite";
+import { getData } from "./../utils/storage/index";
+import { useSelector } from "react-redux";
 
 const MovieDetail = ({ navigation, route }) => {
-  useEffect(() => {
-    return () => {
-      vb.stop();
-    };
-  }, []);
+  const dispatch = useDispatch();
   const { name } = route.params;
   const { urlLink } = route.params;
+  const { idRtmp } = route.params;
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const favoriteState = useSelector((state) => state.favoriteReducer);
+  const onFavorite = () => {
+    const data = {
+      chanel_id: idRtmp,
+    };
+    dispatch(postFavorite(data, favoriteState));
+  };
   function renderHeaderBar() {
     return (
       <ScrollView>
@@ -62,7 +70,7 @@ const MovieDetail = ({ navigation, route }) => {
               borderRadius: 20,
               backgroundColor: COLORS.transparentBlack,
             }}
-            onPress={() => console.log("Share")}
+            onPress={() => onFavorite()}
           >
             <Image
               source={icons.favorite}

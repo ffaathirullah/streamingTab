@@ -13,22 +13,25 @@ import { COLORS } from "./../constants/theme";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const BottomIcon = ({ type, element }) => {
+const BottomIcon = ({ type, element, title }) => {
   const [namaChannel, setNamaChannel] = useState("");
   const [linkRtmp, setLinkRtmp] = useState("");
+  const [idRtmp, setIdRtmp] = useState("");
   const navigation = useNavigation();
   const Icon = () => {
-    if (element.id === 4) {
-      setNamaChannel(element.name);
-      setLinkRtmp(element.link);
+    if (title === "DRW TV") {
+      setNamaChannel(element.name || element.chanel.name);
+      setLinkRtmp(element.link || element.chanel.link);
+      setIdRtmp(element.id || element.chanel.id);
       // https://h1.intechmedia.net/intech/ch87.m3u8
       return (
         <DRW_TV width={windowWidth * 0.24} height={windowHeight * 0.141} />
       );
     }
-    if (element.id === 5) {
-      setNamaChannel(element.name);
-      setLinkRtmp(element.link);
+    if (title === "Pijar TV") {
+      setNamaChannel(element.name || element.chanel.name);
+      setLinkRtmp(element.link || element.chanel.link);
+      setIdRtmp(element.id || element.chanel.id);
       // rtmp://live.restream.io/pull/play_2827105_47e19a258a68eda90504
       return (
         <PijarTV width={windowWidth * 0.24} height={windowHeight * 0.141} />
@@ -43,6 +46,7 @@ const BottomIcon = ({ type, element }) => {
         navigation.navigate("MovieDetail", {
           name: namaChannel,
           urlLink: linkRtmp,
+          idRtmp: idRtmp,
         })
       }
     >

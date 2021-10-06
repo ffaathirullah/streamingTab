@@ -38,7 +38,13 @@ const Sport = ({ navigation }) => {
         <View style={styles.iconLayanan}>
           {channel.map((element) => {
             if (element.id === 5) {
-              return <BottomIcon title={element.name} element={element} />;
+              return (
+                <BottomIcon
+                  title={element.name}
+                  key={element.id}
+                  element={element}
+                />
+              );
             }
           })}
         </View>
