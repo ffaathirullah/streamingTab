@@ -43,6 +43,8 @@ const Religi = ({ navigation }) => {
                   title={element.name}
                   key={element.id}
                   element={element}
+                  widthHome={windowWidth * 0.24}
+                  heightHome={windowHeight * 0.141}
                 />
               );
             }

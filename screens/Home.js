@@ -10,6 +10,7 @@ import {
   ImageBackground,
   Animated,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import { dummyData, COLORS, SIZES, FONTS, icons, images } from "../constants";
 import { Profiles, ProgressBar } from "../components";
@@ -54,19 +55,30 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={{ margin: 20 }}>
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={{
+            margin: 10,
+            marginTop: 20,
+          }}
+        >
           {channel.map((element) => {
             if (element.id === 4 || element.id === 5) {
               return (
-                <BottomIcon
-                  title={element.name}
-                  key={element.id}
-                  element={element}
-                />
+                <View key={element.id} style={{ marginLeft: 10 }}>
+                  <BottomIcon
+                    widthHome={200}
+                    heightHome={200}
+                    title={element.name}
+                    key={element.id}
+                    element={element}
+                  />
+                </View>
               );
             }
           })}
-        </View>
+        </ScrollView>
       </View>
     );
   }
@@ -74,15 +86,17 @@ const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
       <RenderHead />
-
       <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
-        <View>
-          <Carousel data={DataCarousel} />
+        <View style={{ backgroundColor: "#F6F6F6" }}>
+          <View style={{ margin: 10 }}>
+            <Carousel data={DataCarousel} />
+          </View>
         </View>
         {renderContinueWatchingSection()}
       </ScrollView>
     </SafeAreaView>
   );
 };
-
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 export default Home;

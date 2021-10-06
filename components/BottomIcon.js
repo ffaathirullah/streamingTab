@@ -13,7 +13,7 @@ import { COLORS } from "./../constants/theme";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const BottomIcon = ({ type, element, title }) => {
+const BottomIcon = ({ type, element, title, widthHome, heightHome }) => {
   const [namaChannel, setNamaChannel] = useState("");
   const [linkRtmp, setLinkRtmp] = useState("");
   const [idRtmp, setIdRtmp] = useState("");
@@ -26,11 +26,7 @@ const BottomIcon = ({ type, element, title }) => {
         setIdRtmp(element.id || element.chanel.id);
         return () => {};
       }, []);
-
-      // https://h1.intechmedia.net/intech/ch87.m3u8
-      return (
-        <DRW_TV width={windowWidth * 0.24} height={windowHeight * 0.141} />
-      );
+      return <DRW_TV width={widthHome} height={heightHome} />;
     }
     if (title === "Pijar TV") {
       useEffect(() => {
@@ -39,10 +35,7 @@ const BottomIcon = ({ type, element, title }) => {
         setIdRtmp(element.id || element.chanel.id);
         return () => {};
       }, []);
-      // rtmp://live.restream.io/pull/play_2827105_47e19a258a68eda90504
-      return (
-        <PijarTV width={windowWidth * 0.24} height={windowHeight * 0.141} />
-      );
+      return <PijarTV width={widthHome} height={heightHome} />;
     }
     return null;
   };

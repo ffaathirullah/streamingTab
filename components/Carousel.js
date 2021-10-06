@@ -54,7 +54,7 @@ const Carousel = ({ data, flatListA }) => {
           pagingEnabled
           scrollEnabled
           snapToAlignment="center"
-          scrollEventThrottle={100000000}
+          scrollEventThrottle={16}
           decelerationRate={"fast"}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => {

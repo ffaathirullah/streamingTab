@@ -29,22 +29,7 @@ const Favorite = ({ navigation }) => {
   const favoriteState = useSelector((state) => state.favoriteReducer);
   useEffect(() => {
     dispatch(setLoading(true));
-    getData("token").then((res) => {
-      if (res) {
-        axios
-          .get("http://rtmv-api.herokuapp.com/api/pavorit", {
-            headers: { Authorization: `${res.value}` },
-          })
-          .then(function (response) {
-            dispatch(setLoading(false));
-            dispatch({ type: "SET_FAVORITE", value: response.data });
-          })
-          .catch(function (error) {
-            dispatch(setLoading(false));
-          });
-      } else {
-      }
-    });
+    dispatch(getFavorite());
   }, []);
 
   return (
@@ -59,6 +44,8 @@ const Favorite = ({ navigation }) => {
                 key={element.id}
                 title={element.chanel.name}
                 element={element}
+                widthHome={windowWidth * 0.24}
+                heightHome={windowHeight * 0.141}
               />
             );
           })}

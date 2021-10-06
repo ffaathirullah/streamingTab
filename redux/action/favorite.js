@@ -20,24 +20,32 @@ export const postFavorite = (data, favoriteState) => (dispatch) => {
             .then(function (response) {
               dispatch(setLoading(false));
               //
-              axios
-                .get("http://rtmv-api.herokuapp.com/api/pavorit", {
-                  headers: { Authorization: `${res.value}` },
-                })
-                .then(function (response) {
-                  dispatch({ type: "SET_FAVORITE", value: response.data });
-                })
-                .catch(function (error) {
-                  console.log("errrorr", error);
-                  dispatch(setLoading(false));
-                });
+              dispatch(getFavorite());
               //
             })
-            .catch(function (error) {
-              console.log("errrorr", error);
+            .catch(function (err) {
+              console.log("errrorr", err);
             });
         })
         .catch(function (error) {});
+    } else {
+    }
+  });
+};
+export const getFavorite = () => (dispatch) => {
+  getData("token").then((res) => {
+    if (res) {
+      axios
+        .get("http://rtmv-api.herokuapp.com/api/pavorit", {
+          headers: { Authorization: `${res.value}` },
+        })
+        .then(function (response) {
+          dispatch(setLoading(false));
+          dispatch({ type: "SET_FAVORITE", value: response.data });
+        })
+        .catch(function (error) {
+          dispatch(setLoading(false));
+        });
     } else {
     }
   });
